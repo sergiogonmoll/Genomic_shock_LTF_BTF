@@ -1,0 +1,10 @@
+#!/usr/bin/bash --login
+#PBS -P fu80
+#PBS -l storage=gdata/fu80
+#PBS -l ncpus=6
+#PBS -l walltime=24:00:00
+#PBS -l mem=100GB
+
+conda activate TEtranscripts
+cd /g/data/fu80/sg8737/TEtranscripts/
+STAR --runThreadN 6 --runMode genomeGenerate --genomeDir GenomeDir/ --genomeFastaFiles GenomeDir/Pacu_hecki_V1.fa  --sjdbGTFfile GenomeDir/*.gtf --sjdbOverhang 149

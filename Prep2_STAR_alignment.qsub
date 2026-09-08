@@ -1,0 +1,20 @@
+#!/usr/bin/bash --login
+#PBS -P fu80
+#PBS -l storage=gdata/fu80
+#PBS -l ncpus=10
+#PBS -l walltime=48:00:00
+#PBS -l mem=50GB
+
+conda activate TEtranscripts
+cd /g/data/fu80/sg8737/TEtranscripts
+
+genome=GenomeDir/
+mkdir Alignments/${folder}/
+
+for i in RNAseq_trimmed/${folder}/*_1P.fq.gz
+do
+j=RNAseq_trimmed/${folder}/$(basename $i _1P.fq.gz)_2P.fq.gz
+STAR --runThreadN 10 --genomeDir $genome --readFilesIn $i $j --readFilesCommand zcat  --outFileNamePrefix Alignments/${folder}/$(basename $i _1P.fq.gz) \
+--outSAMstrandField intronMotif --outSAMtype BAM SortedByCoordinate --outReadsUnmapped Fastx \
+--winAnchorMultimapNmax 100 --outFilterMultimapNmax 100
+done

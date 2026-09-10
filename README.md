@@ -15,4 +15,6 @@ The resulting count files were collected for all samples in "Counts_final.csv" a
 
 The differential expression analysis and downstream analysis, including the production of the figures in the chapter for TEtranscripts was done with "TEtranscripts_script.R". The differential expression analysis and downstream analysis, including the production of figures for TElocal was done with "TElocal.R".
 
+A complete repository of the PhD thesis has been created elsewhere since file size limitations make it hard to upload all data, and can be found here: https://drive.google.com/file/d/1W5KDuDYTOoX9cbLOTBuyc-lM4j5ymqMH/view?usp=sharing
+
 For any additional questions: sergiogonmoll[at]gmail.com or h.l.dugdale[at]rug.nl

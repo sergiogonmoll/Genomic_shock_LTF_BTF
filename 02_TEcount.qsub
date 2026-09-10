@@ -1,0 +1,25 @@
+#!/usr/bin/bash --login
+#PBS -P fu80
+#PBS -l storage=gdata/fu80
+#PBS -l ncpus=1
+#PBS -l walltime=48:00:00
+#PBS -l mem=50GB
+
+module load singularity
+conda activate TEtranscripts
+cd /g/data/fu80/sg8737/TEtranscripts
+
+for i in Counts/${folder}/*.bam
+do
+echo basename $i
+singularity exec tetranscripts.sif TEcount --sortByPos --format BAM --mode multi -b Counts/${folder}/$(basename $i .bam).bam --GTF LTFr_annotation_braker3.gtf --TE PoHecki.filtered_TE.gtf --project TEcount_$(basename $i) --outdir Counts/${folder}
+done
+
+
+for i in Counts/${folder}/*.bam
+do
+echo basename $i
+singularity exec telocal.sif TElocal --sortByPos --format BAM --mode multi -b Counts/${folder}/$(basename $i .bam).bam --GTF LTFr_annotation_braker3.gtf --TE PoHecki.filtered_TE.gtf.locInd --project TElocal_$(basename $i) --outdir Counts_local/${folder}
+done
+
+
